@@ -74,4 +74,75 @@ static const int GRID_COLUMNS = 10;
     return _gridArray[row][column];
 }
 
+-(void) evolveStep
+{
+    //update each Creature's neighbor count
+    [self countNeighbors];
+    
+    //update each Creature's state
+    [self updateCreatures];
+    
+    //update the generation so the label's text will display the correct generation
+    _generation++;
+}
+
+-(void) countNeighbors
+{
+    for (int i=0; i< [_gridArray count]; i++)
+    {
+        for (int j =0; j< [_gridArray count]; j++)
+        {
+            Creature *currentCreature = _gridArray[i][j];
+            currentCreature.livingNeighbors = 0;
+            
+            for (int k = (i-1); k <= (i+1); k++)
+            {
+                for(int l = (j-1); l <= (j+1); l++)
+                {
+                    BOOL isIndexValid;
+                    isIndexValid = [self isIndexValidForX:k andY:l];
+                    
+                    if(!((k ==i ) && (l == j)) && isIndexValid)
+                    {
+                        Creature *neighbor = _gridArray[k][l];
+                        if (neighbor.isAlive)
+                        {
+                            currentCreature.livingNeighbors+=1;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+-(void) updateCreatures
+{
+    for (int i=0; i<[_gridArray count]; i++)
+    {
+        for (int j=0; j<[_gridArray count]; j++)
+        {
+            Creature *currentCreature = _gridArray[i][j];
+            if (currentCreature.livingNeighbors <=1 || currentCreature.livingNeighbors >=4)
+            {
+                currentCreature.isAlive = NO;
+            }
+            else
+            {
+                currentCreature.isAlive = YES;
+            }
+        }
+    }
+}
+
+- (BOOL)isIndexValidForX:(int)x andY:(int)y
+{
+    BOOL isIndexValid = YES;
+    if(x < 0 || y < 0 || x >= GRID_ROWS || y >= GRID_COLUMNS)
+    {
+        isIndexValid = NO;
+    }
+    return isIndexValid;
+}
+
 @end

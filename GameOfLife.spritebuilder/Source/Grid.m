@@ -132,6 +132,10 @@ static const int GRID_COLUMNS = 10;
             {
                 currentCreature.isAlive = NO;
             }
+            else if (currentCreature.livingNeighbors==2 && currentCreature.isAlive ==YES)
+            {
+                currentCreature.isAlive =YES;
+            }
             else
             {
                 currentCreature.isAlive = YES;

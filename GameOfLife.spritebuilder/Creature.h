@@ -17,6 +17,6 @@
 @property (nonatomic, assign) NSInteger livingNeighbors;
 
 -(id) initCreature;
--(void) setIsAlive:(BOOL)newState;
+
 
 @end

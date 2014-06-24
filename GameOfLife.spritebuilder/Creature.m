@@ -22,10 +22,11 @@
     return self;
 }
 
--(void) setIsAlive(BOOL) newState
+/*
+-(void) setIsAlive:(BOOL) newState
 {
     _isAlive = newState;
     self.visible = _isAlive;
 }
-
+*/
 @end

@@ -31,6 +31,7 @@
 
 -(void) play
 {
+    [self unscheduleAllSelectors];
     [self schedule:@selector(step) interval:0.5f];
 }
 -(void) pause

@@ -22,9 +22,10 @@
     return self;
 }
 
--(void) setIsAlive(BOOL) newState{
+-(void) setIsAlive(BOOL) newState
+{
     _isAlive = newState;
-    self.visable = _isAlive;
+    self.visible = _isAlive;
 }
 
 @end

@@ -31,7 +31,7 @@
 
 -(void) play
 {
-    [self scheduleOnce:@selector(step) delay:0.5f];
+    [self schedule:@selector(step) interval:0.5f];
 }
 -(void) pause
 {
@@ -40,9 +40,12 @@
 
 -(void) step
 {
+    /*
     [_grid evolveStep];
     _generationLabel.string = [NSString stringWithFormat:@"%d", _grid.generation];
     _populationLabel.string = [NSString stringWithFormat:@"%d", _grid.totalAlive];
+     */
+    CCLOG(@"Hi");
 }
 
 
